@@ -27,6 +27,15 @@ namespace exLista1._1
             Console.WriteLine(" Media da força dos jogadores: " + RetornaMForca(jogadores));
             Console.WriteLine(" Media da força dos inimigos: " + RetornaMForca(inimigos));
             Console.WriteLine(" Media de ataque dos jogadores:" + RetornaMAtaque(jogadores));
+            Console.WriteLine("Media ataque dos jogadores:" + RetornaAtaque(inimigos));
+            Console.WriteLine("Media velocidade dos jogadores:" + RetornaVelocidadeJ(jogadores));
+            Console.WriteLine("Media de velocidade dos inimigos" + RetornaVelocidadeI(inimigos) );
+            Console.WriteLine("Soma de dinheiro dos jogadores" + RetornaDinheiroJ(jogadores));
+            Console.WriteLine("Soma de dinheiro dos inimigos" + RetornaDinheiroI(inimigos));
+            Console.WriteLine("Maior media de ataque é dos :" + MaiorAtaque(jogadores, inimigos));
+            Console.WriteLine("Maior media de defesa é dos" + MaiorDefesa ( jogadores, inimigos));
+            Console.WriteLine("Maior media de velocidade é dos:" + MaiorVelocidade(jogadores,inimigos));
+      
 
             Console.ReadLine();
         }
@@ -65,8 +74,129 @@ namespace exLista1._1
                 media += jogadores[i].ataque;
 
             }
+
+            return media / jogadores.Length;
+        }
+
+        static float RetornaAtaque(Inimigo[] inimigos)
+        {
+            float media = 0;
+            for (int i = 0; i < inimigos.Length; i++)
+            {
+                media += inimigos[i].ataque;
+
+            }
+            return media / inimigos.Length;
+        }
+
+        static float RetornaVelocidadeJ(Jogador[] jogadores)
+        {
+            float media = 0;
+            for (int i = 0; i < jogadores.Length; i++)
+            {
+                media += jogadores[i].velocidade;
+            }
+            return media / jogadores.Length;
+        }
+
+        static float RetornaVelocidadeI(Inimigo[] inimigos)
+        {
+            float media = 0;
+            for (int i = 0; i < inimigos.Length; i++)
+            {
+                media += inimigos[i].velocidade;
+            }
+            return media / inimigos.Length;
+        }
+
+        static float RetornaDinheiroJ(Jogador[] jogadores)
+        {
+            float total = 0;
+            for (int i = 0; i < jogadores.Length; i++)
+            {
+                total += jogadores[i].dinheiro;
+
+            }
+            return total;
+        }
+
+        static float RetornaDinheiroI(Inimigo[] inimigos)
+        {
+            float total = 0;
+            for (int i = 0; i < inimigos.Length; i++)
+
+            {
+                total += inimigos[i].dinheiro;
+            }
+            return total;
+        }
+
+        static float RetornaDefesaJ(Jogador[] jogadores)
+        {
+            float media = 0;
+            for (int i = 0; i < jogadores.Length; i++)
+            {
+                media += jogadores[i].defesa;
+            }
+            return media / jogadores.Length;
+        }
+
+        static float RetornaDefesaI(Inimigo[] inimigos)
+        {
+            float media = 0;
+            for (int i = 0; i < inimigos.Length; i++)
+            {
+                media += inimigos[i].defesa;
+            }
+            return media / inimigos.Length;
+        }
+
+
+
+        static string MaiorAtaque (Jogador[] jogadores, Inimigo [] inimigos)
+        {
+            float ataqueInimigo = RetornaAtaque(inimigos);
+            float ataqueJogador = RetornaMAtaque(jogadores);
             
-            return media/jogadores.Length;
+            if ( ataqueInimigo > ataqueJogador)
+            {
+                return "Inimigo";
+            }else
+            {
+                return "Jogador";
+            }
+            return "Iguais";
+        }
+
+        static string MaiorDefesa(Jogador[] jogadores, Inimigo[] inimigos)
+        {
+            float defesaInimigo = RetornaDefesaI(inimigos);
+            float defesaJogador = RetornaDefesaJ(jogadores);
+
+            if (defesaInimigo > defesaJogador)
+            {
+                return "Inimigo";
+            }
+            else
+            {
+                return "Jogador";
+            }
+            return "Iguais";
+        }
+        static string MaiorVelocidade(Jogador[] jogadores, Inimigo[] inimigos)
+        {
+            float velInimigo = RetornaVelocidadeI(inimigos);
+            float velJogador = RetornaVelocidadeJ(jogadores);
+
+            if (velInimigo > velJogador)
+            {
+                return "Inimigo";
+            }
+            else
+            {
+                return "Jogador";
+            }
+            return "Iguais";
         }
     }
 }
